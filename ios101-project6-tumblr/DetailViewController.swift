@@ -17,13 +17,16 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationItem.largeTitleDisplayMode = .never
-
+        configureUI()
+    }
+    
+    private func configureUI() {
+        
         // Do any additional setup after loading the view.
         textView.text = post.caption.trimHTMLTags()
         // The caption returned from the Tumblr API includes a few HTML tags at the beginning and end, which look bit odd in the context of our app. Included in the starter project in the Strings+Extensions file is an extension method on string that will strip out any HTML tags from a string. 
-        
+                
         if let imagePath = post.photos.first {
             let url = imagePath.originalSize.url
             Nuke.loadImage(with: url, into: imageView)
